@@ -3,17 +3,419 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Rule-Based AI Chatbot</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <title>Sky Rule-Based AI Chatbot</title>
+    <style>
+        :root {
+            --page: #eef3f8;
+            --surface: #ffffff;
+            --surface-soft: #f7fafc;
+            --ink: #172033;
+            --muted: #64748b;
+            --line: #d7e0eb;
+            --primary: #0f66d0;
+            --primary-dark: #0b4f9f;
+            --success: #13845b;
+            --bot: #eef4fb;
+            --shadow: 0 24px 70px rgba(23, 32, 51, 0.16);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at top left, rgba(15, 102, 208, 0.16), transparent 34rem),
+                linear-gradient(135deg, #eef3f8 0%, #f8fbfd 52%, #eaf3f1 100%);
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .app {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 300px minmax(0, 1fr);
+            gap: 22px;
+            padding: 28px;
+        }
+
+        .sidebar,
+        .chat-card {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow);
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding: 22px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .brand-mark {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            border-radius: 8px;
+            color: #ffffff;
+            font-weight: 800;
+            background: linear-gradient(135deg, #172033, #0f66d0);
+        }
+
+        .brand-name,
+        .brand-subtitle,
+        .section-label,
+        .eyebrow,
+        .header-copy {
+            margin: 0;
+        }
+
+        .brand-name {
+            font-size: 19px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .brand-subtitle {
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .sidebar-section {
+            display: grid;
+            gap: 12px;
+        }
+
+        .section-label,
+        .eyebrow {
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .topic-list {
+            display: grid;
+            gap: 9px;
+        }
+
+        .topic-button {
+            min-height: 42px;
+            padding: 10px 12px;
+            text-align: left;
+            color: var(--ink);
+            background: var(--surface-soft);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+        }
+
+        .topic-button:hover,
+        .topic-button:focus-visible {
+            color: var(--primary-dark);
+            border-color: #b9d1f0;
+            background: #edf5ff;
+        }
+
+        .stats-grid {
+            grid-template-columns: 1fr 1fr;
+            margin-top: auto;
+        }
+
+        .stats-grid div {
+            padding: 13px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--surface-soft);
+        }
+
+        .stats-grid span,
+        .stats-grid strong {
+            display: block;
+        }
+
+        .stats-grid span {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .stats-grid strong {
+            margin-top: 5px;
+            font-size: 17px;
+        }
+
+        .chat-card {
+            min-height: calc(100vh - 56px);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 26px 30px;
+            color: #ffffff;
+            background: linear-gradient(120deg, #172033 0%, #0f66d0 100%);
+        }
+
+        h1 {
+            margin: 6px 0 8px;
+            font-size: clamp(28px, 4vw, 44px);
+            line-height: 1.08;
+        }
+
+        .header-copy {
+            max-width: 680px;
+            color: #d7e8ff;
+            line-height: 1.5;
+        }
+
+        .status-pill {
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 38px;
+            padding: 8px 13px;
+            border-radius: 999px;
+            color: #e6fff4;
+            font-weight: 800;
+            border: 1px solid rgba(255, 255, 255, 0.32);
+            background: rgba(19, 132, 91, 0.26);
+        }
+
+        .status-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #54d991;
+        }
+
+        .system-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-bottom: 1px solid var(--line);
+            background: var(--surface-soft);
+        }
+
+        .system-bar span {
+            padding: 13px 16px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 800;
+            border-right: 1px solid var(--line);
+        }
+
+        .system-bar span:last-child {
+            border-right: 0;
+        }
+
+        .chat-window {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            min-height: 330px;
+            padding: 24px 30px;
+            overflow-y: auto;
+            background: #ffffff;
+        }
+
+        .message {
+            width: fit-content;
+            max-width: min(720px, 88%);
+            padding: 13px 16px;
+            border-radius: 8px;
+            line-height: 1.5;
+            font-size: 15px;
+        }
+
+        .message p {
+            margin: 0;
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            color: var(--ink);
+            background: var(--bot);
+            border: 1px solid #dce8f6;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            color: #ffffff;
+            background: var(--primary);
+        }
+
+        .quick-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 16px 30px;
+            border-top: 1px solid var(--line);
+            background: var(--surface-soft);
+        }
+
+        .quick-row button {
+            min-height: 38px;
+            padding: 8px 12px;
+            color: var(--primary-dark);
+            font-weight: 800;
+            background: #edf5ff;
+            border: 1px solid #c9dcf5;
+            border-radius: 8px;
+        }
+
+        .quick-row button:hover,
+        .quick-row button:focus-visible {
+            background: #deedff;
+        }
+
+        .composer {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            gap: 10px;
+            padding: 18px 30px 24px;
+            border-top: 1px solid var(--line);
+            background: #ffffff;
+        }
+
+        .composer input {
+            min-width: 0;
+            min-height: 48px;
+            padding: 0 14px;
+            color: var(--ink);
+            border: 1px solid #cbd6e4;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .composer input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(15, 102, 208, 0.14);
+        }
+
+        .send-button,
+        .clear-button {
+            min-height: 48px;
+            padding: 0 18px;
+            font-weight: 800;
+            border-radius: 8px;
+        }
+
+        .send-button {
+            color: #ffffff;
+            background: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .send-button:hover,
+        .send-button:focus-visible {
+            background: var(--primary-dark);
+        }
+
+        .clear-button {
+            color: var(--ink);
+            background: var(--surface-soft);
+            border: 1px solid var(--line);
+        }
+
+        .clear-button:hover,
+        .clear-button:focus-visible {
+            background: #edf1f5;
+        }
+
+        @media (max-width: 860px) {
+            .app {
+                grid-template-columns: 1fr;
+                padding: 16px;
+            }
+
+            .sidebar {
+                order: 2;
+            }
+
+            .chat-card {
+                min-height: 720px;
+            }
+        }
+
+        @media (max-width: 620px) {
+            .app {
+                padding: 0;
+            }
+
+            .sidebar,
+            .chat-card {
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            .chat-header {
+                flex-direction: column;
+                padding: 22px;
+            }
+
+            .system-bar {
+                grid-template-columns: 1fr;
+            }
+
+            .system-bar span {
+                border-right: 0;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .chat-window,
+            .quick-row,
+            .composer {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            .composer {
+                grid-template-columns: 1fr;
+            }
+
+            .message {
+                max-width: 94%;
+            }
+        }
+    </style>
 </head>
 <body>
     <main class="app">
         <aside class="sidebar" aria-label="Chatbot information">
             <div class="brand">
-                <div class="brand-mark">N</div>
+                <div class="brand-mark">S</div>
                 <div>
-                    <p class="brand-name">Nexus</p>
+                    <p class="brand-name">Sky</p>
                     <p class="brand-subtitle">Rule Engine v1.0</p>
                 </div>
             </div>
@@ -85,5 +487,188 @@
             </form>
         </section>
     </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const chatWindow = document.querySelector("#chatWindow");
+            const chatForm = document.querySelector("#chatForm");
+            const userInput = document.querySelector("#userInput");
+            const clearChatButton = document.querySelector("#clearChat");
+            const promptButtons = document.querySelectorAll("[data-message]");
+
+            const rules = [
+                {
+                    patterns: ["hello", "hi", "hey", "good morning", "good afternoon", "good evening"],
+                    responses: [
+                        "Hello! I am Sky, your rule-based AI chatbot. How can I help you today?",
+                        "Hi there! You can ask me about AI, programming, chatbots, time, date, or jokes."
+                    ]
+                },
+                {
+                    patterns: ["who are you", "your name", "what are you", "identity"],
+                    responses: [
+                        "I am a rule-based chatbot that replies using predefined rules and pattern matching.",
+                        "My name is Sky. I am built to demonstrate basic artificial intelligence conversation flow."
+                    ]
+                },
+                {
+                    patterns: ["what is ai", "what is artificial intelligence", "define ai", "meaning of ai", "artificial intelligence"],
+                    responses: [
+                        "Artificial Intelligence is the field of making computer systems perform tasks that usually need human intelligence.",
+                        "AI helps machines understand patterns, make decisions, solve problems, and respond intelligently."
+                    ]
+                },
+                {
+                    patterns: ["what is chatbot", "what is a chatbot", "define chatbot", "chatbot"],
+                    responses: [
+                        "A chatbot is a software program that communicates with users through text or voice.",
+                        "A chatbot simulates conversation by understanding messages and giving useful responses."
+                    ]
+                },
+                {
+                    patterns: ["help", "what can you do", "features", "commands", "capabilities"],
+                    responses: [
+                        "I can answer greetings, explain AI and chatbots, give time and date, tell simple jokes, and respond to programming questions.",
+                        "Try asking: what is AI, tell me a joke, what time is it, what is chatbot, or who are you."
+                    ]
+                },
+                {
+                    patterns: ["python", "programming", "coding", "code", "developer"],
+                    responses: [
+                        "Python is a beginner-friendly language often used for AI, automation, websites, and data projects.",
+                        "Programming means writing instructions that tell a computer how to solve a problem."
+                    ]
+                },
+                {
+                    patterns: ["time", "current time", "what time"],
+                    responses: [
+                        "The current time is {time}.",
+                        "It is {time} right now."
+                    ]
+                },
+                {
+                    patterns: ["date", "today", "current date"],
+                    responses: [
+                        "Today's date is {date}.",
+                        "The current date is {date}."
+                    ]
+                },
+                {
+                    patterns: ["joke", "tell me a joke", "funny"],
+                    responses: [
+                        "Why did the computer get promoted? Because it had outstanding byte-sized results.",
+                        "Why do programmers prefer dark mode? Because light attracts bugs."
+                    ]
+                },
+                {
+                    patterns: ["math", "calculate", "plus", "minus"],
+                    responses: [
+                        "I can explain simple math ideas, but this version does not solve full calculations yet.",
+                        "Math support can be added as a future improvement using more rules or JavaScript functions."
+                    ]
+                },
+                {
+                    patterns: ["thanks", "thank you", "thx"],
+                    responses: [
+                        "You're welcome!",
+                        "Happy to help."
+                    ]
+                },
+                {
+                    patterns: ["bye", "goodbye", "exit", "quit", "see you"],
+                    responses: [
+                        "Goodbye! Keep learning and building.",
+                        "See you later. Great job exploring AI basics."
+                    ]
+                }
+            ];
+
+            const fallbackResponses = [
+                "I do not have a rule for that yet. Try asking about AI, chatbots, programming, time, date, or jokes.",
+                "I did not understand that message. Type 'help' to see what I can answer.",
+                "That question is not in my rule list yet, but it can be added later."
+            ];
+
+            function normalize(text) {
+                return text.toLowerCase().trim().replace(/[^\w\s?]/g, "");
+            }
+
+            function choose(items) {
+                return items[Math.floor(Math.random() * items.length)];
+            }
+
+            function fillDynamicText(response) {
+                const now = new Date();
+                const time = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+                const date = now.toLocaleDateString([], {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric"
+                });
+
+                return response.replace("{time}", time).replace("{date}", date);
+            }
+
+            function getBotResponse(message) {
+                const text = normalize(message);
+                const matchedRule = rules.find(function (rule) {
+                    return rule.patterns.some(function (pattern) {
+                        return text.includes(pattern);
+                    });
+                });
+                const responses = matchedRule ? matchedRule.responses : fallbackResponses;
+
+                return fillDynamicText(choose(responses));
+            }
+
+            function addMessage(text, sender) {
+                const message = document.createElement("article");
+                const paragraph = document.createElement("p");
+
+                message.className = "message " + sender + "-message";
+                paragraph.textContent = text;
+                message.appendChild(paragraph);
+                chatWindow.appendChild(message);
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }
+
+            function sendMessage(text) {
+                const message = text.trim();
+
+                if (!message) {
+                    userInput.focus();
+                    return;
+                }
+
+                addMessage(message, "user");
+                userInput.value = "";
+
+                window.setTimeout(function () {
+                    addMessage(getBotResponse(message), "bot");
+                }, 250);
+            }
+
+            function resetChat() {
+                chatWindow.innerHTML = "";
+                addMessage("Hello! I am Sky, your professional rule-based AI chatbot. Ask me a question or choose a topic.", "bot");
+                userInput.focus();
+            }
+
+            chatForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+                sendMessage(userInput.value);
+            });
+
+            clearChatButton.addEventListener("click", resetChat);
+
+            promptButtons.forEach(function (button) {
+                button.addEventListener("click", function () {
+                    sendMessage(button.dataset.message);
+                });
+            });
+
+            resetChat();
+        });
+    </script>
 </body>
 </html>
