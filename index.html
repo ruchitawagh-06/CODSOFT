@@ -425,19 +425,21 @@
                 <div class="topic-list">
                     <button type="button" class="topic-button" data-message="hello">Greetings</button>
                     <button type="button" class="topic-button" data-message="who are you">Identity</button>
+                    <button type="button" class="topic-button" data-message="what is if else statement">If-Else Statement</button>
+                    <button type="button" class="topic-button" data-message="what is for loop">For Loop</button>
                     <button type="button" class="topic-button" data-message="what is ai">Artificial Intelligence</button>
-                    <button type="button" class="topic-button" data-message="what is chatbot">Chatbots</button>
-                    <button type="button" class="topic-button" data-message="python programming">Programming</button>
+                    <button type="button" class="topic-button" data-message="what is today's weather">Weather Help</button>
+                    <button type="button" class="topic-button" data-message="what is html">Web Development</button>
                     <button type="button" class="topic-button" data-message="what time is it">Time</button>
                     <button type="button" class="topic-button" data-message="what is today's date">Date</button>
-                    <button type="button" class="topic-button" data-message="tell me a joke">Jokes</button>
+                    <button type="button" class="topic-button" data-message="what can you do">All Topics</button>
                 </div>
             </section>
 
             <section class="sidebar-section stats-grid">
                 <div>
                     <span>Rules</span>
-                    <strong>12</strong>
+                    <strong>30+</strong>
                 </div>
                 <div>
                     <span>Status</span>
@@ -468,10 +470,10 @@
             <div class="chat-window" id="chatWindow" aria-live="polite" aria-label="Chat messages"></div>
 
             <div class="quick-row" aria-label="Quick prompts">
-                <button type="button" data-message="what is ai">What is AI?</button>
-                <button type="button" data-message="tell me a joke">Tell me a joke</button>
-                <button type="button" data-message="what can you do">What can you do?</button>
-                <button type="button" data-message="what time is it">Time</button>
+                <button type="button" data-message="what is if else statement">If-Else</button>
+                <button type="button" data-message="what is for loop">For Loop</button>
+                <button type="button" data-message="what is today's weather">Weather</button>
+                <button type="button" data-message="what is javascript">JavaScript</button>
             </div>
 
             <form class="composer" id="chatForm">
@@ -479,7 +481,7 @@
                     id="userInput"
                     type="text"
                     autocomplete="off"
-                    placeholder="Ask something like: What is AI?"
+                    placeholder="Ask anything like: What is if-else? What is for loop?"
                     aria-label="Type your message"
                 >
                 <button type="submit" class="send-button">Send</button>
@@ -501,7 +503,7 @@
                     patterns: ["hello", "hi", "hey", "good morning", "good afternoon", "good evening"],
                     responses: [
                         "Hello! I am Sky, your rule-based AI chatbot. How can I help you today?",
-                        "Hi there! You can ask me about AI, programming, chatbots, time, date, or jokes."
+                        "Hi there! You can ask me about programming, AI, web development, study topics, time, date, weather help, or jokes."
                     ]
                 },
                 {
@@ -528,15 +530,140 @@
                 {
                     patterns: ["help", "what can you do", "features", "commands", "capabilities"],
                     responses: [
-                        "I can answer greetings, explain AI and chatbots, give time and date, tell simple jokes, and respond to programming questions.",
-                        "Try asking: what is AI, tell me a joke, what time is it, what is chatbot, or who are you."
+                        "I can answer many rule-based questions about programming, AI, HTML, CSS, JavaScript, Python, loops, if-else, variables, functions, arrays, time, date, weather help, study tips, and jokes.",
+                        "Try asking: what is if-else, what is for loop, what is HTML, what is JavaScript, what is AI, what is today's weather, or what time is it."
                     ]
                 },
                 {
-                    patterns: ["python", "programming", "coding", "code", "developer"],
+                    patterns: ["programming", "coding", "code", "developer"],
                     responses: [
-                        "Python is a beginner-friendly language often used for AI, automation, websites, and data projects.",
                         "Programming means writing instructions that tell a computer how to solve a problem."
+                    ]
+                },
+                {
+                    patterns: ["python", "what is python", "python programming"],
+                    responses: [
+                        "Python is a simple and powerful programming language used for AI, websites, automation, data science, and software development.",
+                        "Python is popular because its syntax is easy to read and beginners can learn it quickly."
+                    ]
+                },
+                {
+                    patterns: ["if else", "if-else", "if statement", "else statement", "conditional statement"],
+                    responses: [
+                        "An if-else statement is used to make decisions in a program. If a condition is true, one block of code runs; otherwise, the else block runs.",
+                        "Example: if marks >= 40, print pass; else, print fail. This is called decision-making in programming."
+                    ]
+                },
+                {
+                    patterns: ["for loop", "for-loop", "what is loop", "loop statement", "loops"],
+                    responses: [
+                        "A for loop repeats a block of code a fixed number of times or for each item in a list.",
+                        "Example: a for loop can print numbers from 1 to 10 without writing ten separate print statements."
+                    ]
+                },
+                {
+                    patterns: ["while loop", "while-loop"],
+                    responses: [
+                        "A while loop repeats code as long as a condition remains true.",
+                        "Use a while loop when you do not know exactly how many times the code should repeat."
+                    ]
+                },
+                {
+                    patterns: ["variable", "variables", "what is variable"],
+                    responses: [
+                        "A variable is a named storage place for data. Example: age = 18 stores the value 18 in the variable named age.",
+                        "Variables help programs remember values like names, marks, prices, and scores."
+                    ]
+                },
+                {
+                    patterns: ["function", "functions", "method", "what is function"],
+                    responses: [
+                        "A function is a reusable block of code that performs a specific task.",
+                        "Functions make programs organized because you can write code once and use it many times."
+                    ]
+                },
+                {
+                    patterns: ["array", "arrays", "list", "what is array"],
+                    responses: [
+                        "An array or list stores multiple values in one variable, such as marks = [80, 75, 90].",
+                        "Arrays are useful when you need to store many related items together."
+                    ]
+                },
+                {
+                    patterns: ["object", "objects", "class", "oops", "oop"],
+                    responses: [
+                        "Object-oriented programming organizes code using classes and objects. A class is a blueprint, and an object is made from that blueprint.",
+                        "Example: Car can be a class, and one specific car with color and model can be an object."
+                    ]
+                },
+                {
+                    patterns: ["html", "what is html"],
+                    responses: [
+                        "HTML stands for HyperText Markup Language. It is used to create the structure of a web page.",
+                        "HTML adds headings, paragraphs, buttons, images, forms, and links to websites."
+                    ]
+                },
+                {
+                    patterns: ["css", "what is css"],
+                    responses: [
+                        "CSS stands for Cascading Style Sheets. It is used to design and style web pages.",
+                        "CSS controls colors, fonts, spacing, layout, borders, and responsive design."
+                    ]
+                },
+                {
+                    patterns: ["javascript", "java script", "what is javascript"],
+                    responses: [
+                        "JavaScript is a programming language used to make websites interactive.",
+                        "JavaScript can handle button clicks, forms, animations, chatbot replies, and dynamic page updates."
+                    ]
+                },
+                {
+                    patterns: ["database", "sql", "mysql", "data base"],
+                    responses: [
+                        "A database stores and manages data in an organized way. SQL is commonly used to read and update database records.",
+                        "Example: a college system may use a database to store student names, marks, and attendance."
+                    ]
+                },
+                {
+                    patterns: ["algorithm", "algorithms"],
+                    responses: [
+                        "An algorithm is a step-by-step method for solving a problem.",
+                        "Example: a recipe is like an algorithm because it gives ordered steps to reach a final result."
+                    ]
+                },
+                {
+                    patterns: ["debug", "debugging", "error", "bug"],
+                    responses: [
+                        "Debugging means finding and fixing errors in a program.",
+                        "A good debugging method is to read the error message, check the line number, and test small parts of the code."
+                    ]
+                },
+                {
+                    patterns: ["weather", "today weather", "todays weather", "what is todays weather", "what is today's weather", "temperature"],
+                    responses: [
+                        "I can answer weather-related questions, but this offline rule-based version cannot fetch live weather automatically. Please check a weather app or connect me to a weather API for live updates.",
+                        "For live weather, this chatbot needs internet data from a weather API. Right now, I can explain weather terms but cannot know the current weather."
+                    ]
+                },
+                {
+                    patterns: ["rain", "cloud", "sunny", "humidity", "wind"],
+                    responses: [
+                        "Weather terms: humidity means moisture in the air, wind speed shows how fast air is moving, and cloudy means clouds are covering the sky.",
+                        "Rain, wind, humidity, and temperature are common measurements used in weather reports."
+                    ]
+                },
+                {
+                    patterns: ["study", "exam", "learn", "how to study"],
+                    responses: [
+                        "A good study method is to read the topic, write short notes, practice examples, and revise daily.",
+                        "For technical subjects, learn the definition first, then understand one example, then try writing your own code."
+                    ]
+                },
+                {
+                    patterns: ["resume", "github", "project"],
+                    responses: [
+                        "A good project should have clear code, a README file, screenshots, and simple instructions for running it.",
+                        "For GitHub, keep your project organized with folders, comments, documentation, and a meaningful project title."
                     ]
                 },
                 {
@@ -584,9 +711,9 @@
             ];
 
             const fallbackResponses = [
-                "I do not have a rule for that yet. Try asking about AI, chatbots, programming, time, date, or jokes.",
-                "I did not understand that message. Type 'help' to see what I can answer.",
-                "That question is not in my rule list yet, but it can be added later."
+                "I do not have an exact rule for that yet, but I can answer many questions about programming, AI, web development, study topics, time, date, and weather help.",
+                "I did not fully understand that message. Try asking in this format: what is if-else, what is for loop, what is HTML, or what is today's weather.",
+                "That exact question is not in my rule list yet. Because this is a rule-based chatbot, new answers can be added by creating more patterns."
             ];
 
             function normalize(text) {
@@ -616,9 +743,20 @@
                         return text.includes(pattern);
                     });
                 });
-                const responses = matchedRule ? matchedRule.responses : fallbackResponses;
 
-                return fillDynamicText(choose(responses));
+                if (matchedRule) {
+                    return fillDynamicText(choose(matchedRule.responses));
+                }
+
+                if (text.startsWith("what is ") || text.startsWith("what are ")) {
+                    return "This looks like a definition question. I do not have a specific rule for it yet, but you can add one in the chatbot rules. Try asking technical topics like if-else, for loop, variable, function, HTML, CSS, JavaScript, Python, or AI.";
+                }
+
+                if (text.includes("how to")) {
+                    return "This looks like a how-to question. Break the task into small steps, understand the goal, then complete one step at a time. For programming questions, ask about the specific concept such as loop, function, array, or condition.";
+                }
+
+                return fillDynamicText(choose(fallbackResponses));
             }
 
             function addMessage(text, sender) {
@@ -650,7 +788,7 @@
 
             function resetChat() {
                 chatWindow.innerHTML = "";
-                addMessage("Hello! I am Sky, your professional rule-based AI chatbot. Ask me a question or choose a topic.", "bot");
+                addMessage("Hello! I am Sky, your professional rule-based AI chatbot. Ask me technical questions like if-else, for loop, HTML, JavaScript, AI, or general questions like time, date, and weather help.", "bot");
                 userInput.focus();
             }
 
