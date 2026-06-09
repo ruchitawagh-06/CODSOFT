@@ -12,6 +12,9 @@ The project is intentionally beginner-friendly while still being organized like 
 
 - Rule-based responses using pattern matching
 - Professional website interface
+- Advanced definition bank for common technical terms
+- Simple calculator support for basic arithmetic
+- Weather guidance for offline mode
 - Clean project structure
 - Easy-to-edit chatbot rules
 - Conversation loop in the terminal
@@ -80,6 +83,19 @@ index.html
 ```
 
 You can also double-click `index.html` from the project folder.
+
+Example website questions:
+
+```text
+what is if-else statement
+what is for loop
+what is API
+what is compiler
+what is cybersecurity
+what is cloud computing
+calculate 12 * 8
+what is today's weather
+```
 
 ### Python Terminal Version
 

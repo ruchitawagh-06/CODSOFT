@@ -123,6 +123,35 @@
             gap: 9px;
         }
 
+        .capability-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 9px;
+        }
+
+        .capability-card {
+            padding: 11px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--surface-soft);
+        }
+
+        .capability-card strong,
+        .capability-card span {
+            display: block;
+        }
+
+        .capability-card strong {
+            font-size: 14px;
+        }
+
+        .capability-card span {
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.35;
+        }
+
         .topic-button {
             min-height: 42px;
             padding: 10px 12px;
@@ -423,23 +452,43 @@
             <section class="sidebar-section">
                 <p class="section-label">Topics I Know</p>
                 <div class="topic-list">
-                    <button type="button" class="topic-button" data-message="hello">Greetings</button>
-                    <button type="button" class="topic-button" data-message="who are you">Identity</button>
                     <button type="button" class="topic-button" data-message="what is if else statement">If-Else Statement</button>
                     <button type="button" class="topic-button" data-message="what is for loop">For Loop</button>
-                    <button type="button" class="topic-button" data-message="what is ai">Artificial Intelligence</button>
+                    <button type="button" class="topic-button" data-message="what is API">API Definition</button>
+                    <button type="button" class="topic-button" data-message="what is database">Database</button>
+                    <button type="button" class="topic-button" data-message="what is cybersecurity">Cybersecurity</button>
+                    <button type="button" class="topic-button" data-message="what is cloud computing">Cloud Computing</button>
                     <button type="button" class="topic-button" data-message="what is today's weather">Weather Help</button>
-                    <button type="button" class="topic-button" data-message="what is html">Web Development</button>
-                    <button type="button" class="topic-button" data-message="what time is it">Time</button>
-                    <button type="button" class="topic-button" data-message="what is today's date">Date</button>
-                    <button type="button" class="topic-button" data-message="what can you do">All Topics</button>
+                    <button type="button" class="topic-button" data-message="calculate 25 + 15">Simple Math</button>
+                </div>
+            </section>
+
+            <section class="sidebar-section">
+                <p class="section-label">Skill Areas</p>
+                <div class="capability-grid">
+                    <div class="capability-card">
+                        <strong>Definitions</strong>
+                        <span>Technical and general terms</span>
+                    </div>
+                    <div class="capability-card">
+                        <strong>Coding</strong>
+                        <span>Loops, functions, OOP</span>
+                    </div>
+                    <div class="capability-card">
+                        <strong>Web</strong>
+                        <span>HTML, CSS, JavaScript</span>
+                    </div>
+                    <div class="capability-card">
+                        <strong>Utilities</strong>
+                        <span>Time, date, math, weather</span>
+                    </div>
                 </div>
             </section>
 
             <section class="sidebar-section stats-grid">
                 <div>
                     <span>Rules</span>
-                    <strong>30+</strong>
+                    <strong>70+</strong>
                 </div>
                 <div>
                     <span>Status</span>
@@ -453,7 +502,7 @@
                 <div>
                     <p class="eyebrow">Artificial Intelligence Project</p>
                     <h1>Rule-Based AI Chatbot</h1>
-                    <p class="header-copy">A professional rule-based chatbot using pattern matching and predefined responses.</p>
+                    <p class="header-copy">A professional rule-based assistant with an organized knowledge base, smart keyword matching, definitions, coding help, utilities, and conversation flow.</p>
                 </div>
                 <div class="status-pill">
                     <span class="status-dot"></span>
@@ -462,18 +511,18 @@
             </header>
 
             <div class="system-bar">
-                <span>Pattern Matching</span>
-                <span>If-Else Logic</span>
-                <span>Conversation Flow</span>
+                <span>Rule Engine</span>
+                <span>Definition Bank</span>
+                <span>Smart Fallbacks</span>
             </div>
 
             <div class="chat-window" id="chatWindow" aria-live="polite" aria-label="Chat messages"></div>
 
             <div class="quick-row" aria-label="Quick prompts">
                 <button type="button" data-message="what is if else statement">If-Else</button>
-                <button type="button" data-message="what is for loop">For Loop</button>
+                <button type="button" data-message="what is API">API</button>
+                <button type="button" data-message="calculate 12 * 8">Calculate</button>
                 <button type="button" data-message="what is today's weather">Weather</button>
-                <button type="button" data-message="what is javascript">JavaScript</button>
             </div>
 
             <form class="composer" id="chatForm">
@@ -481,7 +530,7 @@
                     id="userInput"
                     type="text"
                     autocomplete="off"
-                    placeholder="Ask anything like: What is if-else? What is for loop?"
+                    placeholder="Ask: What is API? What is for loop? Calculate 12 * 8"
                     aria-label="Type your message"
                 >
                 <button type="submit" class="send-button">Send</button>
@@ -530,8 +579,8 @@
                 {
                     patterns: ["help", "what can you do", "features", "commands", "capabilities"],
                     responses: [
-                        "I can answer many rule-based questions about programming, AI, HTML, CSS, JavaScript, Python, loops, if-else, variables, functions, arrays, time, date, weather help, study tips, and jokes.",
-                        "Try asking: what is if-else, what is for loop, what is HTML, what is JavaScript, what is AI, what is today's weather, or what time is it."
+                        "I can answer definitions, coding concepts, web development questions, AI basics, computer science terms, study help, time, date, simple math, weather guidance, and project questions.",
+                        "Try asking: what is API, what is compiler, what is cloud computing, what is if-else, what is for loop, calculate 12 * 8, or what is today's weather."
                     ]
                 },
                 {
@@ -667,6 +716,97 @@
                     ]
                 },
                 {
+                    patterns: ["api", "what is api"],
+                    responses: [
+                        "API stands for Application Programming Interface. It allows two software systems to communicate with each other.",
+                        "An API is like a messenger between applications. For example, a weather app can use a weather API to get live weather data."
+                    ]
+                },
+                {
+                    patterns: ["compiler", "interpreter"],
+                    responses: [
+                        "A compiler converts source code into machine code before running it. An interpreter runs code step by step.",
+                        "Compiled languages are often fast after compilation, while interpreted languages are usually easier to test quickly."
+                    ]
+                },
+                {
+                    patterns: ["operating system", "os"],
+                    responses: [
+                        "An operating system is system software that manages hardware and software resources. Examples include Windows, Linux, macOS, Android, and iOS.",
+                        "The operating system controls files, memory, processes, devices, and user interaction."
+                    ]
+                },
+                {
+                    patterns: ["network", "networking", "internet"],
+                    responses: [
+                        "A computer network connects devices so they can share data and resources.",
+                        "The internet is a global network of networks that allows devices around the world to communicate."
+                    ]
+                },
+                {
+                    patterns: ["cybersecurity", "security", "password", "phishing"],
+                    responses: [
+                        "Cybersecurity means protecting computers, networks, and data from attacks or unauthorized access.",
+                        "Good security habits include using strong passwords, avoiding suspicious links, updating software, and enabling two-factor authentication."
+                    ]
+                },
+                {
+                    patterns: ["cloud computing", "cloud"],
+                    responses: [
+                        "Cloud computing means using internet-based servers to store data, run applications, and provide computing services.",
+                        "Examples of cloud services include Google Drive, AWS, Microsoft Azure, and cloud hosting platforms."
+                    ]
+                },
+                {
+                    patterns: ["machine learning", "ml"],
+                    responses: [
+                        "Machine learning is a part of AI where computers learn patterns from data and improve performance without being directly programmed for every rule.",
+                        "Examples include recommendation systems, spam detection, image recognition, and prediction models."
+                    ]
+                },
+                {
+                    patterns: ["data science", "data analytics", "analytics"],
+                    responses: [
+                        "Data science uses data, statistics, programming, and machine learning to find useful insights and make predictions.",
+                        "Data analytics focuses on understanding data and using it to support better decisions."
+                    ]
+                },
+                {
+                    patterns: ["frontend", "front end", "backend", "back end", "full stack"],
+                    responses: [
+                        "Frontend development builds the part users see. Backend development handles servers, databases, and application logic. Full stack means working on both.",
+                        "A complete web app usually has a frontend interface, backend logic, and a database."
+                    ]
+                },
+                {
+                    patterns: ["json", "xml"],
+                    responses: [
+                        "JSON is a lightweight format for storing and sending data. It is commonly used in APIs.",
+                        "XML and JSON are both data formats, but JSON is usually simpler and very popular in web development."
+                    ]
+                },
+                {
+                    patterns: ["http", "https", "url", "website"],
+                    responses: [
+                        "HTTP is a protocol used by browsers and servers to communicate. HTTPS is the secure version that encrypts data.",
+                        "A URL is the web address used to locate a page or resource on the internet."
+                    ]
+                },
+                {
+                    patterns: ["input", "output", "ipo"],
+                    responses: [
+                        "Input is data given to a program, processing is what the program does with it, and output is the result.",
+                        "Example: entering marks is input, calculating grade is processing, and showing pass/fail is output."
+                    ]
+                },
+                {
+                    patterns: ["syntax", "semantic", "logic error"],
+                    responses: [
+                        "A syntax error happens when code breaks language rules. A logic error happens when code runs but gives the wrong result.",
+                        "Syntax is about correct code structure, while semantics is about the meaning of the code."
+                    ]
+                },
+                {
                     patterns: ["time", "current time", "what time"],
                     responses: [
                         "The current time is {time}.",
@@ -711,10 +851,57 @@
             ];
 
             const fallbackResponses = [
-                "I do not have an exact rule for that yet, but I can answer many questions about programming, AI, web development, study topics, time, date, and weather help.",
-                "I did not fully understand that message. Try asking in this format: what is if-else, what is for loop, what is HTML, or what is today's weather.",
-                "That exact question is not in my rule list yet. Because this is a rule-based chatbot, new answers can be added by creating more patterns."
+                "I do not have an exact rule for that yet. Try asking a clear definition question such as what is API, what is compiler, what is database, or what is for loop.",
+                "I did not fully understand that message. I work best with short questions like define variable, explain HTML, calculate 20 + 5, or what is today's weather.",
+                "That exact question is not in my knowledge base yet. Because this is a rule-based chatbot, more answers can be added by adding more terms and patterns."
             ];
+
+            const definitionBank = {
+                "ai": "Artificial Intelligence is the field of creating machines or software that can perform tasks that usually require human intelligence.",
+                "artificial intelligence": "Artificial Intelligence is the field of creating machines or software that can perform tasks that usually require human intelligence.",
+                "api": "API stands for Application Programming Interface. It allows one software application to communicate with another.",
+                "algorithm": "An algorithm is a step-by-step process used to solve a problem or complete a task.",
+                "array": "An array is a collection that stores multiple values together under one name.",
+                "backend": "Backend is the server-side part of an application that handles logic, databases, authentication, and data processing.",
+                "binary": "Binary is a number system that uses only 0 and 1. Computers use binary to represent data.",
+                "boolean": "A boolean is a data type with only two values: true or false.",
+                "bug": "A bug is an error or problem in software that causes incorrect behavior.",
+                "chatbot": "A chatbot is a software program that responds to user messages and simulates conversation.",
+                "class": "A class is a blueprint used in object-oriented programming to create objects.",
+                "cloud computing": "Cloud computing means using internet-based servers for storage, applications, databases, and computing power.",
+                "compiler": "A compiler translates source code into machine code or another executable format before the program runs.",
+                "condition": "A condition is an expression that evaluates to true or false and is used for decision-making.",
+                "css": "CSS stands for Cascading Style Sheets. It controls the design, layout, colors, and spacing of web pages.",
+                "cybersecurity": "Cybersecurity is the practice of protecting systems, networks, and data from digital attacks.",
+                "data": "Data means facts, values, or information that can be stored, processed, or analyzed.",
+                "database": "A database is an organized collection of data that can be stored, searched, updated, and managed.",
+                "debugging": "Debugging is the process of finding and fixing errors in code.",
+                "encryption": "Encryption converts readable data into a protected format so unauthorized people cannot easily understand it.",
+                "frontend": "Frontend is the part of a website or app that users directly see and interact with.",
+                "function": "A function is a reusable block of code that performs a specific task.",
+                "html": "HTML stands for HyperText Markup Language. It creates the structure and content of a web page.",
+                "http": "HTTP is the protocol used for communication between web browsers and web servers.",
+                "https": "HTTPS is the secure version of HTTP. It encrypts data between the browser and server.",
+                "if else": "An if-else statement lets a program choose between two paths based on whether a condition is true or false.",
+                "inheritance": "Inheritance is an OOP concept where one class can reuse properties and methods from another class.",
+                "internet": "The internet is a global network that connects computers and devices around the world.",
+                "interpreter": "An interpreter runs code step by step instead of compiling the whole program first.",
+                "javascript": "JavaScript is a programming language used to make web pages interactive and dynamic.",
+                "json": "JSON is a lightweight data format commonly used to exchange data between applications and APIs.",
+                "loop": "A loop repeats a block of code multiple times.",
+                "machine learning": "Machine learning is a branch of AI where systems learn patterns from data to make predictions or decisions.",
+                "network": "A network connects computers and devices so they can share data and resources.",
+                "object": "An object is an instance of a class that contains data and behavior.",
+                "oop": "OOP means Object-Oriented Programming. It organizes code using objects and classes.",
+                "operating system": "An operating system manages computer hardware and software. Examples include Windows, Linux, macOS, Android, and iOS.",
+                "python": "Python is a readable, beginner-friendly programming language used in AI, data science, automation, and web development.",
+                "recursion": "Recursion is when a function calls itself to solve a smaller version of the same problem.",
+                "server": "A server is a computer or program that provides data or services to other computers called clients.",
+                "sql": "SQL stands for Structured Query Language. It is used to manage and query relational databases.",
+                "variable": "A variable is a named place used to store a value in a program.",
+                "website": "A website is a collection of web pages that users can access through a browser.",
+                "weather": "Weather describes the current condition of the atmosphere, including temperature, rain, wind, clouds, and humidity."
+            };
 
             function normalize(text) {
                 return text.toLowerCase().trim().replace(/[^\w\s?]/g, "");
@@ -736,8 +923,82 @@
                 return response.replace("{time}", time).replace("{date}", date);
             }
 
+            function getDefinitionAnswer(text) {
+                const cleanedTerm = text
+                    .replace(/^what is\s+/, "")
+                    .replace(/^what are\s+/, "")
+                    .replace(/^define\s+/, "")
+                    .replace(/^explain\s+/, "")
+                    .replace(/^meaning of\s+/, "")
+                    .replace(/[?]/g, "")
+                    .trim();
+
+                if (definitionBank[cleanedTerm]) {
+                    return definitionBank[cleanedTerm];
+                }
+
+                const matchedTerm = Object.keys(definitionBank).find(function (term) {
+                    return cleanedTerm.includes(term) || text.includes(" " + term + " ");
+                });
+
+                if (matchedTerm) {
+                    return definitionBank[matchedTerm];
+                }
+
+                return "";
+            }
+
+            function getMathAnswer(text) {
+                const mathText = text
+                    .replace("calculate", "")
+                    .replace("solve", "")
+                    .replace("what is", "")
+                    .replace("plus", "+")
+                    .replace("minus", "-")
+                    .replace("times", "*")
+                    .replace("multiplied by", "*")
+                    .replace("divided by", "/")
+                    .trim();
+
+                if (!/^[0-9+\-*/().\s]+$/.test(mathText) || !/[+\-*/]/.test(mathText)) {
+                    return "";
+                }
+
+                try {
+                    const answer = Function("\"use strict\"; return (" + mathText + ");")();
+
+                    if (!Number.isFinite(answer)) {
+                        return "This calculation does not produce a valid number.";
+                    }
+
+                    return "The answer is " + answer + ".";
+                } catch (error) {
+                    return "";
+                }
+            }
+
             function getBotResponse(message) {
                 const text = normalize(message);
+                const mathAnswer = getMathAnswer(text);
+
+                if (mathAnswer) {
+                    return mathAnswer;
+                }
+
+                if (
+                    text.startsWith("what is ") ||
+                    text.startsWith("what are ") ||
+                    text.startsWith("define ") ||
+                    text.startsWith("explain ") ||
+                    text.startsWith("meaning of ")
+                ) {
+                    const definitionAnswer = getDefinitionAnswer(text);
+
+                    if (definitionAnswer) {
+                        return definitionAnswer;
+                    }
+                }
+
                 const matchedRule = rules.find(function (rule) {
                     return rule.patterns.some(function (pattern) {
                         return text.includes(pattern);
@@ -748,12 +1009,12 @@
                     return fillDynamicText(choose(matchedRule.responses));
                 }
 
-                if (text.startsWith("what is ") || text.startsWith("what are ")) {
-                    return "This looks like a definition question. I do not have a specific rule for it yet, but you can add one in the chatbot rules. Try asking technical topics like if-else, for loop, variable, function, HTML, CSS, JavaScript, Python, or AI.";
+                if (text.startsWith("what is ") || text.startsWith("what are ") || text.startsWith("define ") || text.startsWith("explain ")) {
+                    return "This looks like a definition question, but that exact term is not in my knowledge base yet. Try terms like API, compiler, database, algorithm, function, variable, HTML, CSS, JavaScript, Python, cloud computing, cybersecurity, or machine learning.";
                 }
 
                 if (text.includes("how to")) {
-                    return "This looks like a how-to question. Break the task into small steps, understand the goal, then complete one step at a time. For programming questions, ask about the specific concept such as loop, function, array, or condition.";
+                    return "This looks like a how-to question. A systematic method is: understand the goal, break it into small steps, complete the first step, test it, then improve it. For coding, ask me the exact concept such as loop, function, array, condition, API, or database.";
                 }
 
                 return fillDynamicText(choose(fallbackResponses));
