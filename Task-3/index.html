@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3 Recommendation System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="cinema-bg" aria-hidden="true">
+        <span class="film-strip strip-one"></span>
+        <span class="film-strip strip-two"></span>
+        <span class="spotlight"></span>
+    </div>
+
+    <main class="app">
+        <aside class="control-panel">
+            <div class="brand">
+                <div class="brand-mark">RS</div>
+                <div>
+                    <p class="eyebrow">CODSOFT Task 3</p>
+                    <h1>Global Movie Recommender</h1>
+                </div>
+            </div>
+
+            <section class="panel-section">
+                <p class="section-title">Your Preferences</p>
+                <label>
+                    Favorite genre
+                    <select id="genre">
+                        <option value="any">Any Genre</option>
+                        <option value="sci-fi">Sci-Fi</option>
+                        <option value="adventure">Adventure</option>
+                        <option value="drama">Drama</option>
+                        <option value="comedy">Comedy</option>
+                        <option value="thriller">Thriller</option>
+                        <option value="animation">Animation</option>
+                        <option value="romance">Romance</option>
+                        <option value="action">Action</option>
+                        <option value="musical">Musical</option>
+                    </select>
+                </label>
+                <label>
+                    Language
+                    <select id="language">
+                        <option value="any">Any Language</option>
+                        <option value="Hindi">Hindi</option>
+                        <option value="English">English</option>
+                        <option value="Korean">Korean</option>
+                        <option value="Gujarati">Gujarati</option>
+                        <option value="Tamil">Tamil</option>
+                        <option value="Telugu">Telugu</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="French">French</option>
+                        <option value="Malayalam">Malayalam</option>
+                        <option value="Bengali">Bengali</option>
+                        <option value="Marathi">Marathi</option>
+                    </select>
+                </label>
+                <label>
+                    Current mood
+                    <select id="mood">
+                        <option value="any">Any Mood</option>
+                        <option value="exciting">Exciting</option>
+                        <option value="thoughtful">Thoughtful</option>
+                        <option value="fun">Fun</option>
+                        <option value="emotional">Emotional</option>
+                        <option value="mysterious">Mysterious</option>
+                        <option value="romantic">Romantic</option>
+                    </select>
+                </label>
+                <label>
+                    Movie era
+                    <select id="era">
+                        <option value="any">Any Era</option>
+                        <option value="classic">Classic before 2000</option>
+                        <option value="modern">Modern 2000-2016</option>
+                        <option value="new">New Era 2017-2026</option>
+                    </select>
+                </label>
+                <label>
+                    Minimum rating
+                    <input id="rating" type="range" min="6" max="9" step="0.5" value="7.5">
+                    <span class="range-value" id="ratingValue">7.5+</span>
+                </label>
+            </section>
+
+            <section class="panel-section">
+                <p class="section-title">Quick Picks</p>
+                <div class="chip-grid" id="chipGrid">
+                    <button class="chip active" type="button" data-chip="balanced">Balanced</button>
+                    <button class="chip" type="button" data-chip="family">Family</button>
+                    <button class="chip" type="button" data-chip="classic">Classic</button>
+                    <button class="chip" type="button" data-chip="new">New Era</button>
+                    <button class="chip" type="button" data-chip="award">Award Picks</button>
+                    <button class="chip" type="button" data-chip="regional">Regional Gems</button>
+                </div>
+            </section>
+
+            <button class="primary-action" id="recommendButton" type="button">Find Recommendations</button>
+        </aside>
+
+        <section class="results-panel">
+            <header class="hero">
+                <div>
+                    <p class="eyebrow">Recommendation System</p>
+                    <h2>Discover movies from every corner of cinema.</h2>
+                    <p>Choose your genre, language, mood, era, and rating. The system compares those preferences with a global movie dataset and ranks the best matches.</p>
+                </div>
+                <div class="score-card">
+                    <span>Best match</span>
+                    <strong id="matchScore">98%</strong>
+                </div>
+            </header>
+
+            <section class="featured-reel" aria-label="Featured cinema categories">
+                <div class="reel-card hindi">
+                    <span>Hindi</span>
+                    <strong>Bollywood Hits</strong>
+                </div>
+                <div class="reel-card korean">
+                    <span>Korean</span>
+                    <strong>K-Drama Thrillers</strong>
+                </div>
+                <div class="reel-card gujarati">
+                    <span>Gujarati</span>
+                    <strong>Regional Stories</strong>
+                </div>
+                <div class="reel-card global">
+                    <span>Global</span>
+                    <strong>World Cinema</strong>
+                </div>
+            </section>
+
+            <div class="toolbar">
+                <label class="search-box">
+                    Search worldwide catalog
+                    <input id="search" type="search" placeholder="Search title, language, country, or tag">
+                </label>
+                <div class="metric-row">
+                    <div>
+                        <span>Dataset</span>
+                        <strong id="movieCount">0</strong>
+                    </div>
+                    <div>
+                        <span>Shown</span>
+                        <strong id="shownCount">0</strong>
+                    </div>
+                </div>
+            </div>
+
+            <section class="method-strip" aria-label="Recommendation method">
+                <div>
+                    <span>1</span>
+                    <strong>Read Preferences</strong>
+                    <p>Genre, language, mood, era, rating, and quick picks are collected.</p>
+                </div>
+                <div>
+                    <span>2</span>
+                    <strong>Compare Features</strong>
+                    <p>Each movie is scored using content-based filtering.</p>
+                </div>
+                <div>
+                    <span>3</span>
+                    <strong>Rank Results</strong>
+                    <p>The best matching movies are shown first with reasons.</p>
+                </div>
+            </section>
+
+            <section class="recommendation-grid" id="recommendations" aria-live="polite"></section>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

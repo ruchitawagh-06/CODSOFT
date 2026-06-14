@@ -29,16 +29,26 @@ No installation is required for the website version.
 Open:
 
 ```text
-Task-2/index.html
+Task-2-Tic-Tac-Toe/index.html
 ```
 
 The AI uses Minimax with Alpha-Beta pruning.
 
+## Run Task 3 Recommendation System
+
+Open:
+
+```text
+Task-3/index.html
+```
+
+The system recommends movies based on genre, mood, rating, and tags.
+
 ## Tasks
 
 - `Task-1-Chatbot`: Rule-Based AI Chatbot
-- `Task-2`: Tic-Tac-Toe AI
-- `Task-3`: To be added
+- `Task-2-Tic-Tac-Toe`: Tic-Tac-Toe AI
+- `Task-3`: Recommendation System
 
 ## GitHub Pages Setup
 
