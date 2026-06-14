@@ -7,18 +7,26 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="sky-layer" aria-hidden="true">
+        <span class="cloud cloud-one"></span>
+        <span class="cloud cloud-two"></span>
+        <span class="floating-block block-one"></span>
+        <span class="floating-block block-two"></span>
+        <span class="floating-block block-three"></span>
+    </div>
+
     <main class="app">
-        <aside class="panel">
+        <aside class="panel hud-panel">
             <div class="brand">
-                <div class="brand-mark">T</div>
+                <div class="brand-mark">XO</div>
                 <div>
                     <p class="eyebrow">CODSOFT Task 2</p>
-                    <h1>Tic-Tac-Toe AI</h1>
+                    <h1>Mine-Tac-Toe</h1>
                 </div>
             </div>
 
             <section class="control-section">
-                <p class="section-title">Game Setup</p>
+                <p class="section-title">Choose Your Gear</p>
                 <div class="segmented" aria-label="Choose your symbol">
                     <button class="segment active" data-symbol="X" type="button">Play X</button>
                     <button class="segment" data-symbol="O" type="button">Play O</button>
@@ -31,7 +39,7 @@
             </section>
 
             <section class="control-section">
-                <p class="section-title">Scoreboard</p>
+                <p class="section-title">Score Chest</p>
                 <div class="score-grid">
                     <div>
                         <span>You</span>
@@ -49,7 +57,7 @@
             </section>
 
             <section class="control-section">
-                <p class="section-title">AI Engine</p>
+                <p class="section-title">Crafted With</p>
                 <div class="engine-list">
                     <span>Minimax Search</span>
                     <span>Alpha-Beta Pruning</span>
@@ -61,17 +69,23 @@
             <button class="reset-all" id="resetAll" type="button">Reset Scores</button>
         </aside>
 
-        <section class="game-card">
+        <section class="game-card arena">
             <header class="game-header">
                 <div>
-                    <p class="eyebrow">Human vs Machine</p>
-                    <h2>Beat the AI if you can</h2>
-                    <p>The computer evaluates future moves and chooses the strongest position.</p>
+                    <p class="eyebrow">Human vs Redstone AI</p>
+                    <h2>Place blocks. Claim the row.</h2>
+                    <p>Pick a square, watch the AI mine its counter-move, and try to own the grid.</p>
                 </div>
                 <div class="status-pill" id="turnBadge">Your Turn</div>
             </header>
 
             <div class="board-wrap">
+                <div class="mini-scene" aria-hidden="true">
+                    <span class="sprite player-sprite"></span>
+                    <span class="sprite ai-sprite"></span>
+                    <span class="ore ore-one"></span>
+                    <span class="ore ore-two"></span>
+                </div>
                 <div class="board" id="board" aria-label="Tic-Tac-Toe board">
                     <button class="cell" data-index="0" type="button" aria-label="Cell 1"></button>
                     <button class="cell" data-index="1" type="button" aria-label="Cell 2"></button>
@@ -86,12 +100,12 @@
             </div>
 
             <div class="message-bar">
-                <p id="message">Choose a square to start.</p>
+                <p id="message">Choose a square to start the match.</p>
                 <button id="newRound" type="button">New Round</button>
             </div>
 
             <details class="algorithm-panel">
-                <summary>How the AI decides</summary>
+                <summary>Redstone Brain Path</summary>
                 <div class="flow">
                     <span>Check board</span>
                     <span>Simulate moves</span>

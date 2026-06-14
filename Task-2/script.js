@@ -37,8 +37,10 @@ function startRound() {
     cells.forEach((cell) => {
         cell.textContent = "";
         cell.disabled = false;
-        cell.classList.remove("ai", "win");
+        cell.classList.remove("ai", "win", "placed");
+        cell.querySelectorAll(".block-burst").forEach((burst) => burst.remove());
     });
+    document.body.classList.remove("ai-thinking");
     setMessage(human === "X" ? "Your turn. Choose a square." : "AI starts because you selected O.");
 
     if (human === "O") {
@@ -63,6 +65,7 @@ function handleHumanMove(index) {
     }
 
     setMessage("AI is thinking...");
+    document.body.classList.add("ai-thinking");
     window.setTimeout(makeAiMove, 350);
 }
 
@@ -73,6 +76,7 @@ function makeAiMove() {
 
     const move = chooseAiMove();
     placeMove(move, ai);
+    document.body.classList.remove("ai-thinking");
 
     if (!finishIfNeeded()) {
         setMessage("Your turn. Choose your next move.");
@@ -83,10 +87,36 @@ function placeMove(index, player) {
     board[index] = player;
     cells[index].textContent = player;
     cells[index].disabled = true;
+    cells[index].classList.remove("placed");
+    void cells[index].offsetWidth;
+    cells[index].classList.add("placed");
+    createMoveBurst(cells[index]);
 
     if (player === ai) {
         cells[index].classList.add("ai");
     }
+}
+
+function createMoveBurst(cell) {
+    const burstPoints = [
+        [-42, -36],
+        [38, -34],
+        [-36, 34],
+        [42, 30],
+        [0, -48],
+        [0, 46],
+    ];
+
+    burstPoints.forEach(([x, y]) => {
+        const burst = document.createElement("span");
+        burst.className = "block-burst";
+        burst.style.left = "50%";
+        burst.style.top = "50%";
+        burst.style.setProperty("--burst-x", `${x}px`);
+        burst.style.setProperty("--burst-y", `${y}px`);
+        cell.appendChild(burst);
+        window.setTimeout(() => burst.remove(), 560);
+    });
 }
 
 function finishIfNeeded() {
