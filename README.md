@@ -24,10 +24,20 @@ Task-1-Chatbot/index.html
 
 No installation is required for the website version.
 
+## Run Task 2 Tic-Tac-Toe AI
+
+Open:
+
+```text
+Task-2/index.html
+```
+
+The AI uses Minimax with Alpha-Beta pruning.
+
 ## Tasks
 
 - `Task-1-Chatbot`: Rule-Based AI Chatbot
-- `Task-2`: To be added
+- `Task-2`: Tic-Tac-Toe AI
 - `Task-3`: To be added
 
 ## GitHub Pages Setup
